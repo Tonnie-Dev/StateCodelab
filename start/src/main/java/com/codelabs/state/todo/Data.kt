@@ -29,7 +29,7 @@ import java.util.UUID
 
 data class TodoItem(
     val task: String,
-    val icon: TodoIcon = TodoIcon.Default,
+    val icon: TodoIcon = TodoIcon.default,
     // since the user may generate identical tasks, give them each a unique ID
     val id: UUID = UUID.randomUUID()
 )
@@ -42,6 +42,6 @@ enum class TodoIcon(val imageVector: ImageVector, @StringRes val contentDescript
     Trash(Icons.Default.RestoreFromTrash, R.string.cd_restore);
 
     companion object {
-        val Default = Square
+        val default = Square
     }
 }

@@ -110,7 +110,8 @@ fun PreviewTodoScreen() {
         TodoItem("Learn compose", TodoIcon.Event),
         TodoItem("Take the codelab"),
         TodoItem("Apply state", TodoIcon.Done),
-        TodoItem("Build dynamic UIs", TodoIcon.Square)
+        TodoItem("Build dynamic UIs", TodoIcon.Square),
+        TodoItem("Valentine", TodoIcon.Event)
     )
     TodoScreen(items, {}, {})
 }
