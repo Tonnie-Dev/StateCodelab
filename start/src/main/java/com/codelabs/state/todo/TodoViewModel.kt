@@ -23,7 +23,6 @@ import androidx.lifecycle.ViewModel
 class TodoViewModel : ViewModel() {
 
     private var _todoItems = MutableLiveData(listOf<TodoItem>())
-
     val todoItems: LiveData<List<TodoItem>> = _todoItems
 
     fun addItem(item: TodoItem) {
@@ -31,8 +30,8 @@ class TodoViewModel : ViewModel() {
     }
 
     fun removeItem(item: TodoItem) {
-        _todoItems.value = _todoItems.value!!.toMutableList().also {
-            it.remove(item)
+        _todoItems.value = _todoItems.value!!.toMutableList().apply {
+           this.remove(item)
         }
     }
 }
