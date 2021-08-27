@@ -111,7 +111,7 @@ fun IconRow(
         for (todoIcon in TodoIcon.values()) {
             SelectableIconButton(
                 icon = todoIcon.imageVector,
-                iconContentDescription = todoIcon.contentDescription,
+                iconContentDescription = todoIcon.contentDesc,
                 onIconSelected = { onIconChange(todoIcon) },
                 isSelected = todoIcon == icon
             )

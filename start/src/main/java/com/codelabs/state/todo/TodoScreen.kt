@@ -17,17 +17,10 @@
 package com.codelabs.state.todo
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
-import androidx.compose.material.Icon
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -84,7 +77,8 @@ fun TodoScreen(
  * @param modifier modifier for this element
  */
 @Composable
-fun TodoRow(todo: TodoItem, onItemClicked: (TodoItem) -> Unit, modifier: Modifier = Modifier) {
+fun TodoRow(todo: TodoItem, onItemClicked: (TodoItem) -> Unit,
+            modifier: Modifier = Modifier) {
     Row(
         modifier = modifier
             .clickable { onItemClicked(todo) }
@@ -92,9 +86,12 @@ fun TodoRow(todo: TodoItem, onItemClicked: (TodoItem) -> Unit, modifier: Modifie
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(todo.task)
+        val iconAlpha = remember(todo.id){randomTint()}
+
         Icon(
             imageVector = todo.icon.imageVector,
-            contentDescription = stringResource(id = todo.icon.contentDescription)
+            tint = LocalContentColor.current.copy(alpha = iconAlpha),
+            contentDescription = stringResource(id = todo.icon.contentDesc)
         )
     }
 }
@@ -122,6 +119,7 @@ fun PreviewTodoRow() {
     val todo = remember { generateRandomTodoItem() }
     TodoRow(todo = todo, onItemClicked = {}, modifier = Modifier.fillMaxWidth())
 }
+
 
 
 
