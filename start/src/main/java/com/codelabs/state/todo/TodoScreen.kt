@@ -52,7 +52,8 @@ fun TodoScreen(
                 TodoRow(
                     todo = it,
                     onItemClicked = { onRemoveItem(it) },
-                    modifier = Modifier.fillParentMaxWidth()
+                    modifier = Modifier.fillParentMaxWidth(),
+                    iconAlpha = 0.1f
                 )
             }
         }
@@ -76,9 +77,14 @@ fun TodoScreen(
  * @param onItemClicked (event) notify caller that the row was clicked
  * @param modifier modifier for this element
  */
+
+
 @Composable
-fun TodoRow(todo: TodoItem, onItemClicked: (TodoItem) -> Unit,
-            modifier: Modifier = Modifier) {
+fun TodoRow(
+    todo: TodoItem, onItemClicked: (TodoItem) -> Unit,
+    modifier: Modifier = Modifier,
+    iconAlpha: Float = remember(todo.id) { randomTint() }
+) {
     Row(
         modifier = modifier
             .clickable { onItemClicked(todo) }
@@ -86,7 +92,6 @@ fun TodoRow(todo: TodoItem, onItemClicked: (TodoItem) -> Unit,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(todo.task)
-        val iconAlpha = remember(todo.id){randomTint()}
 
         Icon(
             imageVector = todo.icon.imageVector,
