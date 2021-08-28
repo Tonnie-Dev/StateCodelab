@@ -24,6 +24,7 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -134,7 +135,35 @@ fun TodoInputTextField(modifier: Modifier) {
     TodoInputText(text, setText, modifier)
 }
 
+@Composable
+fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
 
+
+    Column {
+
+
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .padding(top = 16.dp)
+        ) {
+
+            TodoInputTextField(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 8.dp)
+            )
+            TodoEditButton(
+                onClick = { /*TODO*/ },
+                text = "Add",
+                modifier = Modifier.align(Alignment.CenterVertically
+                )
+            )
+
+        }
+    }
+
+}
 
 
 
