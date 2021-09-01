@@ -22,6 +22,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -118,9 +119,10 @@ private fun randomTint(): Float {
 
 
 @Composable
-fun TodoInputTextField(modifier: Modifier) {
-    val (text, setText) = remember { mutableStateOf("") }
-    TodoInputText(text, setText, modifier)
+fun TodoInputTextField(text:String, onTextChanged: (String) ->Unit, modifier: Modifier) {
+
+    //val (text, setText) = remember { mutableStateOf("") }
+    TodoInputText(text, onTextChanged, modifier)
 }
 
 @Composable
