@@ -21,10 +21,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -126,9 +123,16 @@ fun TodoInputTextField(text: String, onTextChanged: (String) -> Unit, modifier: 
 }
 
 @Composable
-fun TodoItemInput( onItemComplete: (TodoItem) -> Unit) {
+fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
 
-val (text, setText) = remember { mutableStateOf("")}
+    //make TodoItemInput stateful
+    val (text, setText) = remember { mutableStateOf("") }
+
+
+
+
+
+
     Column {
 
 
@@ -137,8 +141,11 @@ val (text, setText) = remember { mutableStateOf("")}
                 .padding(horizontal = 16.dp)
                 .padding(top = 16.dp)
         ) {
+
             //TEXTFIELD
-            TodoInputTextField( text = text, onTextChanged = setText,
+            TodoInputTextField(
+                text = text,
+                onTextChanged = setText,
                 modifier = Modifier
                     .weight(1f)
                     .padding(end = 8.dp)
@@ -146,8 +153,13 @@ val (text, setText) = remember { mutableStateOf("")}
 
             //BUTTON
             TodoEditButton(
-                onClick = { /*TODO*/ },
+                onClick = {
+
+                          onItemComplete(TodoItem(text))
+                    setText("")
+                          },
                 text = "Add",
+                enabled = text.isBlank(),
                 modifier = Modifier.align(
                     Alignment.CenterVertically
                 )
