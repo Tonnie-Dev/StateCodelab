@@ -205,14 +205,14 @@ fun TodoItemInputBackground(
 @Composable
 fun TodoInputText(
     text: String,
-    onTextChange: (String) -> Unit,
+    onTextChanged: (String) -> Unit,
     modifier: Modifier = Modifier,
     onImeAction: () -> Unit = {}
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
     TextField(
         value = text,
-        onValueChange = onTextChange,
+        onValueChange = onTextChanged,
         colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.Transparent),
         maxLines = 1,
         keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done),

@@ -114,16 +114,15 @@ private fun randomTint(): Float {
 
 }
 
-
-@Composable
+/*@Composable
 fun TodoInputTextField(text: String, onTextChanged: (String) -> Unit, modifier: Modifier) {
 
     //val (text, setText) = remember { mutableStateOf("") }
     TodoInputText(text, onTextChanged, modifier)
-}
+}*/
 
 @Composable
-fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
+fun TodoItemInput(onItemComplete: (TodoItem)-> Unit) {
 
     //make TodoItemInput stateful
     val (text, setText) = remember { mutableStateOf("") }
@@ -138,12 +137,12 @@ fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
 
         Row(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
-                .padding(top = 16.dp)
+                .padding(horizontal = 32.dp)
+                .padding(top = 0.dp)
         ) {
 
             //TEXTFIELD
-            TodoInputTextField(
+            TodoInputText(
                 text = text,
                 onTextChanged = setText,
                 modifier = Modifier
@@ -154,12 +153,11 @@ fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
             //BUTTON
             TodoEditButton(
                 onClick = {
-
-                          onItemComplete(TodoItem(text))
-                    setText("")
+                    onItemComplete(TodoItem(text)) // send onItemComplete event up
+                    setText("") // clear the internal text
                           },
                 text = "Add",
-                enabled = text.isBlank(),
+                enabled = text.isNotBlank(), // enable Button if text is not blank
                 modifier = Modifier.align(
                     Alignment.CenterVertically
                 )
@@ -190,9 +188,11 @@ fun PreviewTodoRow() {
     TodoRow(todo = todo, onItemClicked = {}, modifier = Modifier.fillMaxWidth())
 }
 
-@Preview(name = "TodoScreen")
+
+@Preview("TodoItemInput")
 @Composable
-fun TodoPreview() = TodoItemInput(onItemComplete = {})
+fun PreviewTodoItemInput() = TodoItemInput({})
+
 
 
 
