@@ -15,10 +15,10 @@
  */
 
 package com.codelabs.state.todo
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 
 class TodoViewModel : ViewModel() {
@@ -32,6 +32,11 @@ class TodoViewModel : ViewModel() {
         //restricting writes to this state object - only visible inside the ViewModel.
         private set
 
+    private var editPosition by mutableStateOf(-1)
+    // state
+    val currentEditItem: TodoItem?
+    get() = todoItems.getOrNull(editPosition)
+
     // event: addItem
     fun addItem(item: TodoItem) {
         todoItems.add(item)
@@ -42,4 +47,31 @@ class TodoViewModel : ViewModel() {
         todoItems.remove(item)
     }
 
+
+   // event: item selected
+    fun onEditItemSelected(item:TodoItem){
+
+        editPosition = todoItems.indexOf(item)
+    }
+
+    //event: editing done
+    fun onEditDone(item: TodoItem) {
+editPosition = -1
+    }
+
+    //event: editItemChanged
+    fun onEditItemChange(item: TodoItem){
+
+       //ensure the currentItem is non-null
+        val currentItem = requireNotNull(currentEditItem)
+
+        //ensure the ids match otherwise throw an exception
+        require(currentItem.id == item.id){
+            //exception message
+            "You can only change an item with the same id as currentEditItem"
+        }
+
+       //set currentItem to item
+        todoItems[editPosition] = item
+    }
 }
