@@ -28,6 +28,8 @@ class TodoViewModel : ViewModel() {
 
     // state: todoItems
     var todoItems = mutableStateListOf<TodoItem>()
+
+        //restricting writes to this state object - only visible inside the ViewModel.
         private set
 
     // event: addItem
