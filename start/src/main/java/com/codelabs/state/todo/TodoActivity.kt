@@ -52,11 +52,11 @@ class TodoActivity : ComponentActivity() {
 fun TodoActivityScreen(todoViewModel: TodoViewModel) {
 
 //observing LiveData inside todoViewModel
-    val items: List<TodoItem> by todoViewModel.todoItems.observeAsState(listOf())
+    //val items: List<TodoItem> by todoViewModel.todoItems.observeAsState(listOf())
 
     //Call the stateless composable passing in the items and the 2 events
-    TodoScreen(items = items,
-               onAddItem = { todoViewModel.addItem(it) },
+    TodoScreen(items = todoViewModel.todoItems,
+               onAddItem = todoViewModel::addItem,
                onRemoveItem = { item -> todoViewModel.removeItem(item) }
 
   )
