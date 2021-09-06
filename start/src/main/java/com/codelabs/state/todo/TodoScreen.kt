@@ -42,9 +42,12 @@ import kotlin.random.Random
 @Composable
 fun TodoScreen(
     items: List<TodoItem>,
+    currentEditItem:TodoItem?,
     onAddItem: (TodoItem) -> Unit,
     onRemoveItem: (TodoItem) -> Unit,
-    currentEditItem:TodoItem?,
+    onEditItemSelected: () -> Unit,
+    onEditItemChange:()-> Unit,
+    onEditDone:()-> Unit
 
 ) {
     Column {
@@ -220,7 +223,7 @@ fun PreviewTodoScreen() {
         TodoItem("Build dynamic UIs", TodoIcon.Square),
         TodoItem("Valentine", TodoIcon.Event)
     )
-    TodoScreen(items, {}, {})
+    TodoScreen(items, null,{},{}, {},{},{})
 }
 
 @Preview
