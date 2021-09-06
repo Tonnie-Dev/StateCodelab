@@ -56,8 +56,12 @@ fun TodoActivityScreen(todoViewModel: TodoViewModel) {
 
     //Call the stateless composable passing in the items and the 2 events
     TodoScreen(items = todoViewModel.todoItems,
+               currentEditItem = todoViewModel.currentEditItem,
                onAddItem = todoViewModel::addItem,
-               onRemoveItem = { item -> todoViewModel.removeItem(item) }
+               onRemoveItem = { item -> todoViewModel.removeItem(item) },
+               onEditItemSelected = todoViewModel::onEditItemSelected,
+               onEditItemChange = todoViewModel::onEditItemChange,
+               onEditDone = todoViewModel::onEditDone
 
   )
 

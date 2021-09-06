@@ -54,7 +54,7 @@ class TodoViewModel : ViewModel() {
 
 
     //event: editItemChanged
-    private fun onEditItemChange(item: TodoItem){
+    fun onEditItemChange(item: TodoItem){
 
        //ensure the currentItem is non-null
         val currentItem = requireNotNull(currentEditItem)
@@ -70,7 +70,7 @@ class TodoViewModel : ViewModel() {
     }
 
     //event: editing done
-    private fun onEditDone() {
+ fun onEditDone() {
         editPosition = -1
     }
 

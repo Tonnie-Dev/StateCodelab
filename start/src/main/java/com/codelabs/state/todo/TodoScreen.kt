@@ -45,8 +45,8 @@ fun TodoScreen(
     currentEditItem:TodoItem?,
     onAddItem: (TodoItem) -> Unit,
     onRemoveItem: (TodoItem) -> Unit,
-    onEditItemSelected: () -> Unit,
-    onEditItemChange:()-> Unit,
+    onEditItemSelected: (TodoItem) -> Unit,
+    onEditItemChange:(TodoItem)-> Unit,
     onEditDone:()-> Unit
 
 ) {
@@ -212,6 +212,26 @@ fun TodoItemInput(
         }
     }
 }
+
+
+//INLINE_EDITOR
+
+@Composable
+fun TodoItemInlineEditor(
+    item: TodoItem,
+    onEditItemChange: (TodoItem) -> Unit,
+    onEditDone: () -> Unit,
+    onRemoveItem:()-> Unit
+
+
+) = TodoItemInput(
+    text = item.task,
+    onTextChange ={onEditItemChange(item.copy(task = it))} ,
+    icon = item.icon,
+    onIconChange = {onEditItemChange(item.copy(icon = it))},
+    submitAction =  onEditDone ,
+    isIconRowVisible =true
+)
 
 @Preview
 @Composable
