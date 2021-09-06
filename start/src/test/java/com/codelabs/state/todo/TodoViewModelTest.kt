@@ -17,5 +17,5 @@
 package com.codelabs.state.todo
 
 class TodoViewModelTest {
-    // TODO: Write tests
+
 }

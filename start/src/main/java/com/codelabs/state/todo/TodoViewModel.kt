@@ -42,10 +42,7 @@ class TodoViewModel : ViewModel() {
         todoItems.add(item)
     }
 
-    // event: removeItem
-    fun removeItem(item: TodoItem) {
-        todoItems.remove(item)
-    }
+
 
 
    // event: item selected
@@ -74,4 +71,10 @@ editPosition = -1
        //set currentItem to item
         todoItems[editPosition] = item
     }
+
+    // event: removeItem
+    fun removeItem(item: TodoItem) {
+        todoItems.remove(item)
+        onEditItemChange(item)
+     }
 }
