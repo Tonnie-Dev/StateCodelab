@@ -51,10 +51,7 @@ class TodoViewModel : ViewModel() {
         editPosition = todoItems.indexOf(item)
     }
 
-    //event: editing done
-    fun onEditDone() {
-editPosition = -1
-    }
+
 
     //event: editItemChanged
     private fun onEditItemChange(item: TodoItem){
@@ -70,6 +67,11 @@ editPosition = -1
 
        //set currentItem to item
         todoItems[editPosition] = item
+    }
+
+    //event: editing done
+    private fun onEditDone() {
+        editPosition = -1
     }
 
     // event: removeItem
