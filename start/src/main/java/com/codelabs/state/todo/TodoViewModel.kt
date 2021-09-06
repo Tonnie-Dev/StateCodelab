@@ -57,7 +57,7 @@ editPosition = -1
     }
 
     //event: editItemChanged
-    fun onEditItemChange(item: TodoItem){
+    private fun onEditItemChange(item: TodoItem){
 
        //ensure the currentItem is non-null
         val currentItem = requireNotNull(currentEditItem)
@@ -74,7 +74,8 @@ editPosition = -1
 
     // event: removeItem
     fun removeItem(item: TodoItem) {
-        todoItems.remove(item)
         onEditItemChange(item)
+        todoItems.remove(item)
+
      }
 }
