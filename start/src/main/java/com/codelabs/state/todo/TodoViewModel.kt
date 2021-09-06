@@ -52,7 +52,7 @@ class TodoViewModel : ViewModel() {
     }
 
     //event: editing done
-    fun onEditDone(item: TodoItem) {
+    fun onEditDone() {
 editPosition = -1
     }
 
@@ -74,8 +74,7 @@ editPosition = -1
 
     // event: removeItem
     fun removeItem(item: TodoItem) {
-        onEditItemChange(item)
         todoItems.remove(item)
-
-     }
+        onEditDone() // don't keep the editor open when removing items
+    }
 }
