@@ -27,17 +27,22 @@ class TodoViewModel : ViewModel() {
     //private var _todoItems = MutableLiveData(listOf<TodoItem>())
     //val todoItems: LiveData<List<TodoItem>> = _todoItems
 
+
+//STATES
     // state: todoItems
     var todoItems = mutableStateListOf<TodoItem>()
         //restricting writes to this state object - only visible inside the ViewModel.
         private set
 
+    //state
     private var editPosition by mutableStateOf(-1)
 
     // state
     val currentEditItem: TodoItem?
         get() = todoItems.getOrNull(editPosition)
 
+
+    //EVENTS
     // event: add Item to the list
     fun addItem(item: TodoItem) {
         todoItems.add(item)
@@ -71,6 +76,7 @@ class TodoViewModel : ViewModel() {
     fun onEditDone() {
         editPosition = -1
     }
+
     // event: removeItem
     fun removeItem(item: TodoItem) {
         todoItems.remove(item)
