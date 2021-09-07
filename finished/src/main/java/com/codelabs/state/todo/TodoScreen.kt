@@ -54,7 +54,7 @@ import kotlin.random.Random
  * Stateless component that is responsible for the entire todo screen.
  *
  * @param items (state) list of [TodoItem] to display
- * @param currentlyEditing (state) enable edit mode for this item
+ * @param currentlyEditingItem (state) enable edit mode for this item
  * @param onAddItem (event) request an item be added
  * @param onRemoveItem (event) request an item be removed
  * @param onStartEdit (event) request an item start edit mode
@@ -64,7 +64,7 @@ import kotlin.random.Random
 @Composable
 fun TodoScreen(
     items: List<TodoItem>,
-    currentlyEditing: TodoItem?,
+    currentlyEditingItem: TodoItem?,
     onAddItem: (TodoItem) -> Unit,
     onRemoveItem: (TodoItem) -> Unit,
     onStartEdit: (TodoItem) -> Unit,
@@ -72,7 +72,7 @@ fun TodoScreen(
     onEditDone: () -> Unit
 ) {
     Column {
-        val enableTopSection = currentlyEditing == null
+        val enableTopSection = currentlyEditingItem == null
         TodoItemInputBackground(elevate = enableTopSection) {
             if (enableTopSection) {
                 TodoItemEntryInput(onAddItem)
@@ -94,9 +94,9 @@ fun TodoScreen(
             contentPadding = PaddingValues(top = 8.dp)
         ) {
             items(items = items) { todo ->
-                if (currentlyEditing?.id == todo.id) {
+                if (currentlyEditingItem?.id == todo.id) {
                     TodoItemInlineEditor(
-                        item = currentlyEditing,
+                        item = currentlyEditingItem,
                         onEditItemChange = onEditItemChange,
                         onEditDone = onEditDone,
                         onRemoveItem = { onRemoveItem(todo) }

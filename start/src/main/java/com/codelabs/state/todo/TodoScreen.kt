@@ -227,7 +227,7 @@ fun TodoItemInput(
 }
 
 
-//INLINE_EDITOR
+//INLINE_EDITOR - stateless - has Views and Hoists State
 
 @Composable
 fun TodoItemInlineEditor(
