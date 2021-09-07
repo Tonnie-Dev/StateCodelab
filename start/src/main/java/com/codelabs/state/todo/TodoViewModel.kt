@@ -21,6 +21,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import timber.log.Timber
 
 class TodoViewModel : ViewModel() {
     // remove the LiveData and replace it with a mutableStateListOf
@@ -53,6 +54,8 @@ class TodoViewModel : ViewModel() {
     fun onEditItemSelected(item: TodoItem) {
 
         editPosition = todoItems.indexOf(item)
+
+        Timber.i("Inside onEditItemSelected - position is: $editPosition")
     }
 
 
@@ -70,11 +73,15 @@ class TodoViewModel : ViewModel() {
 
         //set currentItem to item
         todoItems[editPosition] = item
+        Timber.i("Inside onEditItemChange - position is: $editPosition")
+
     }
 
     //event: editing done
     fun onEditDone() {
+
         editPosition = -1
+        Timber.i("Inside onEditDone() - position is: $editPosition")
     }
 
     // event: removeItem

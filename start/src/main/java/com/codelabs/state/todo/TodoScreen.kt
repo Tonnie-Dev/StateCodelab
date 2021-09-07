@@ -67,7 +67,7 @@ fun TodoScreen(
                         item = todoItem,
                         onEditItemChange = onEditItemChange,
                         onEditDone = onEditDone,
-                        onRemoveItem = {onRemoveItem(todoItem)}
+                        
                     )
                 } else {
 
@@ -234,7 +234,7 @@ fun TodoItemInlineEditor(
     item: TodoItem,
     onEditItemChange: (TodoItem) -> Unit,
     onEditDone: () -> Unit,
-    onRemoveItem: () -> Unit
+
 
 
 ) = TodoItemInput(
@@ -276,7 +276,7 @@ fun PreviewTodoItemInlineEditor()  = TodoItemInlineEditor(
     item = TodoItem(task = "", icon =TodoIcon.Event),
     onEditItemChange = { },
     onEditDone ={},
-    onRemoveItem ={}
+
 )
 
 
