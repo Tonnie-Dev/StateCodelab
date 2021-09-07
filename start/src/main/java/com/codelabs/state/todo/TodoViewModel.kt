@@ -15,6 +15,7 @@
  */
 
 package com.codelabs.state.todo
+
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -28,49 +29,46 @@ class TodoViewModel : ViewModel() {
 
     // state: todoItems
     var todoItems = mutableStateListOf<TodoItem>()
-
         //restricting writes to this state object - only visible inside the ViewModel.
         private set
 
     private var editPosition by mutableStateOf(-1)
+
     // state
     val currentEditItem: TodoItem?
-    get() = todoItems.getOrNull(editPosition)
+        get() = todoItems.getOrNull(editPosition)
 
-    // event: addItem
+    // event: add Item to the list
     fun addItem(item: TodoItem) {
         todoItems.add(item)
     }
 
 
-
-
-   // event: item selected
-    fun onEditItemSelected(item:TodoItem){
+    // event: item selected
+    fun onEditItemSelected(item: TodoItem) {
 
         editPosition = todoItems.indexOf(item)
     }
 
 
-
     //event: editItemChanged
-    fun onEditItemChange(item: TodoItem){
+    fun onEditItemChange(item: TodoItem) {
 
-       //ensure the currentItem is non-null
+        //ensure the currentItem is non-null
         val currentItem = requireNotNull(currentEditItem)
 
         //ensure the ids match otherwise throw an exception
-        require(currentItem.id == item.id){
+        require(currentItem.id == item.id) {
             //exception message
             "You can only change an item with the same id as currentEditItem"
         }
 
-       //set currentItem to item
+        //set currentItem to item
         todoItems[editPosition] = item
     }
 
     //event: editing done
- fun onEditDone() {
+    fun onEditDone() {
         editPosition = -1
     }
 
