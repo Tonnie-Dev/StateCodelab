@@ -25,6 +25,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelabs.state.util.generateRandomTodoItem
@@ -50,24 +51,56 @@ fun TodoScreen(
     onEditDone: () -> Unit
 
 ) {
+
     Column {
 
-        // add TodoItemInputBackground and TodoItem at the top of TodoScreen
-        TodoItemInputBackground(elevate = true, modifier = Modifier.fillMaxWidth()) {
-            TodoItemEntryInput(onItemComplete = onAddItem)
-        }
+        val isEnableTopHeader = (currentEditItem==null)
+        
+
+
+            // add TodoItemInputBackground and TodoItem at the top of TodoScreen
+            TodoItemInputBackground(elevate = true, modifier = Modifier.fillMaxWidth()) {
+
+                if (isEnableTopHeader){
+
+                    TodoItemEntryInput(onItemComplete = onAddItem)
+                }
+                else{
+
+                    Text(
+                        text = "Editing Item",
+                        style = MaterialTheme.typography.h6,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(16.dp)
+                            .fillMaxWidth()
+                    )
+                    
+                }
+
+            }
+
+      
+
+   
+
+
         LazyColumn(
             modifier = Modifier.weight(1f),
             contentPadding = PaddingValues(top = 8.dp)
         ) {
             items(items = items) { todoItem ->
 
+
+              /*display TodoItemInlineEditor if the current item is being edited,
+                otherwise show the TodoRow*/
                 if (currentEditItem?.id == todoItem.id) {
                     TodoItemInlineEditor(
                         item = todoItem,
                         onEditItemChange = onEditItemChange,
                         onEditDone = onEditDone,
-                        
+                        onRemoveItem = { onRemoveItem(todoItem) }
                     )
                 } else {
 
@@ -234,7 +267,7 @@ fun TodoItemInlineEditor(
     item: TodoItem,
     onEditItemChange: (TodoItem) -> Unit,
     onEditDone: () -> Unit,
-
+    onRemoveItem: (TodoItem) -> Unit
 
 
 ) = TodoItemInput(
@@ -276,7 +309,7 @@ fun PreviewTodoItemInlineEditor()  = TodoItemInlineEditor(
     item = TodoItem(task = "", icon =TodoIcon.Event),
     onEditItemChange = { },
     onEditDone ={},
-
+    {}
 )
 
 
