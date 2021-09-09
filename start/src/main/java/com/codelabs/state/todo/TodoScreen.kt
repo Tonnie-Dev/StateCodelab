@@ -198,7 +198,10 @@ fun TodoItemEntryInput(onItemComplete: (TodoItem) -> Unit) {
         onIconChange = setIcon,
         submitAction = submitAction,
         isIconRowVisible = isIconRowVisible
-    )
+    ){
+        
+        TodoEditButton(onClick =submitAction, text = "Add",  enabled = text.isNotBlank())
+    }
 
 }
 
