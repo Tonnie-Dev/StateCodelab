@@ -112,7 +112,7 @@ fun TodoScreen(
                         todo = todoItem,
                         onItemClicked = { onEditItemSelected(it) },
                         modifier = Modifier.fillParentMaxWidth(),
-                        iconAlpha = 0.8f
+                        iconAlpha = 0.1f
                     )
                 }
 
