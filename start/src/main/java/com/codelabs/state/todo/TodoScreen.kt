@@ -239,7 +239,7 @@ fun TodoItemInput(
 
             
             Spacer(modifier = Modifier.width(8.dp))
-            Box(modifier = Modifier.align(Alignment.CenterVertically)){ buttonSlot}
+            Box(modifier = Modifier.align(Alignment.CenterVertically)){ buttonSlot()}
            /* //BUTTON
             TodoEditButton(
                 onClick = {
@@ -279,7 +279,7 @@ fun TodoItemInlineEditor(
     item: TodoItem,
     onEditItemChange: (TodoItem) -> Unit,
     onEditDone: () -> Unit,
-    onRemoveItem: (TodoItem) -> Unit
+    onRemoveItem: () -> Unit
 
 
 ) = TodoItemInput(
@@ -288,7 +288,27 @@ fun TodoItemInlineEditor(
     icon = item.icon,
     onIconChange = { onEditItemChange(item.copy(icon = it)) },
     submitAction = onEditDone,
-    isIconRowVisible = true
+    isIconRowVisible = true,
+    buttonSlot = {
+
+        Row{
+
+            val shrinkButtons = Modifier.widthIn(20.dp)
+            
+            TextButton(onClick = onEditDone, modifier = shrinkButtons) {
+                Text(
+                    text = "\uD83D\uDCBE", //Floppy Disc
+                    textAlign = TextAlign.End,
+                    modifier = Modifier.width(30.dp)
+                )
+            }
+            
+            
+            TextButton(onClick = onRemoveItem, modifier = shrinkButtons) {
+                Text(  text = "❌", textAlign = TextAlign.End, modifier = Modifier.width(30.dp))
+            }
+        }
+    }
 )
 
 @Preview
