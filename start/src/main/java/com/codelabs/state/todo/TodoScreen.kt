@@ -16,14 +16,19 @@
 
 package com.codelabs.state.todo
 
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -54,36 +59,34 @@ fun TodoScreen(
 
     Column {
 
-        val isEnableTopHeader = (currentEditItem==null)
-        
+        val isEnableTopHeader = (currentEditItem == null)
 
 
-            // add TodoItemInputBackground and TodoItem at the top of TodoScreen
-            TodoItemInputBackground(elevate = true, modifier = Modifier.fillMaxWidth()) {
+        // add TodoItemInputBackground and TodoItem at the top of TodoScreen
+        TodoItemInputBackground(elevate = true, modifier = Modifier.fillMaxWidth()) {
 
-                if (isEnableTopHeader){
+            if (isEnableTopHeader) {
 
-                    TodoItemEntryInput(onItemComplete = onAddItem)
-                }
-                else{
+                TodoItemEntryInput(onItemComplete = onAddItem)
+            } else {
 
-                    Text(
-                        text = "Editing Item",
-                        style = MaterialTheme.typography.h6,
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .align(Alignment.CenterVertically)
-                            .padding(16.dp)
-                            .fillMaxWidth()
-                    )
-                    
-                }
+                Text(
+                    text = "Editing Item",
+                    style = MaterialTheme.typography.h6,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .padding(16.dp)
+                        .fillMaxWidth()
+                )
 
             }
 
-      
+        }
 
-   
+
+
+
 
 
         LazyColumn(
@@ -93,8 +96,8 @@ fun TodoScreen(
             items(items = items) { todoItem ->
 
 
-              /*display TodoItemInlineEditor if the current item is being edited,
-                otherwise show the TodoRow*/
+                /*display TodoItemInlineEditor if the current item is being edited,
+                  otherwise show the TodoRow*/
                 if (currentEditItem?.id == todoItem.id) {
                     TodoItemInlineEditor(
                         item = todoItem,
@@ -207,7 +210,10 @@ fun TodoItemInput(
     icon: TodoIcon,
     onIconChange: (TodoIcon) -> Unit,
     submitAction: () -> Unit,
-    isIconRowVisible: Boolean
+    isIconRowVisible: Boolean,
+    buttonSlot:@Composable () -> Unit
+
+
 ) {
     Column {
 
@@ -303,15 +309,30 @@ fun PreviewTodoRow() {
 @Preview("TodoItemInput")
 @Composable
 fun PreviewTodoItemInput() = TodoItemEntryInput {}
+
 @Preview(name = "TodoItemInlineEditor Preview")
 @Composable
-fun PreviewTodoItemInlineEditor()  = TodoItemInlineEditor(
-    item = TodoItem(task = "", icon =TodoIcon.Event),
+fun PreviewTodoItemInlineEditor() = TodoItemInlineEditor(
+    item = TodoItem(task = "", icon = TodoIcon.Event),
     onEditItemChange = { },
-    onEditDone ={},
+    onEditDone = {},
     {}
 )
 
 
+@Preview
+@Composable
+//preview doesn't accept parameters
+fun ColoredTextPreview() = ColoredText(Color.Red)
+
+@Composable
+//create a 2nd non-preview composable that accept parameters
+fun ColoredText(color1: Color = Color.Red) {
+    Text(
+        text = "text",
+        color = color1,
+        modifier = Modifier.fillMaxWidth()
+    )
+}
 
 
