@@ -234,7 +234,10 @@ fun TodoItemInput(
                 onImeAction = submitAction
             )
 
-            //BUTTON
+            
+            Spacer(modifier = Modifier.width(8.dp))
+            Box(modifier = Modifier.align(Alignment.CenterVertically)){ buttonSlot}
+           /* //BUTTON
             TodoEditButton(
                 onClick = {
                     submitAction()
@@ -244,7 +247,7 @@ fun TodoItemInput(
                 modifier = Modifier.align(
                     Alignment.CenterVertically
                 )
-            )
+            )*/
 
         }
 
