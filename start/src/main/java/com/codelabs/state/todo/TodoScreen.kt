@@ -305,7 +305,7 @@ fun TodoItemInlineEditor(
             
             
             TextButton(onClick = onRemoveItem, modifier = shrinkButtons) {
-                Text(  text = "❌", textAlign = TextAlign.End, modifier = Modifier.width(30.dp))
+                Text(  text = "\u274C", textAlign = TextAlign.End, modifier = Modifier.width(30.dp))
             }
         }
     }
