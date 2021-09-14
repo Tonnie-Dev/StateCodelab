@@ -18,9 +18,20 @@ package com.codelabs.state.ui
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.codelabs.state.R
+
+//initialize your font - FontFamily takes a list of fonts
+private val Rubik = FontFamily(
+    Font(resId = R.font.rubik_bold, weight = FontWeight.W700),
+    Font(resId = R.font.rubik_regular, weight = FontWeight.W400),
+    Font(resId = R.font.rubik_italic, weight = FontWeight.W400)
+
+)
+
 
 // Set of Material typography styles to start with
 val typography = Typography(
