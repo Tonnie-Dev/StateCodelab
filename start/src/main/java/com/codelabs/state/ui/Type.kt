@@ -36,8 +36,19 @@ private val Rubik = FontFamily(
 // Set of Material typography styles to start with
 val typography = Typography(
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = Rubik,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
+    ),
+    button = TextStyle(
+        fontFamily = Rubik,
+        fontWeight = FontWeight.Medium,
+        fontSize = 14.sp
+    ),
+    caption = TextStyle(
+        fontFamily = Rubik,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp
     )
+
 )
